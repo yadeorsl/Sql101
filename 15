@@ -1,0 +1,20 @@
+--select count(*) from film
+--where length> (
+--select avg(length) from film
+--);
+--select count(*) from film
+--where rental_rate= ALL(
+--select max(rental_rate) from film
+--);
+--select title, rental_rate,replacement_cost from film 
+--where rental_rate= (
+--select min(rental_rate) from film
+--where replacement_cost=(
+--select min(replacement_cost) from film
+--))
+--order by replacement_cost asc
+--;
+SELECT payment.payment_id, payment.customer_id, payment.amount, customer.first_name, customer.last_name 
+FROM payment 
+INNER JOIN customer ON payment.customer_id = customer.customer_id
+WHERE amount = (SELECT MAX(amount) FROM payment);
